@@ -1,4 +1,4 @@
-# Rime dictionary: stroke
+# Rime dictionary: stroke_uiojk
 # encoding: utf-8
 #
 # 五筆畫
@@ -16,7 +16,7 @@
 #
 
 ---
-name: stroke
+name: stroke_uiojk
 version: "2.0"
 sort: by_weight              # 按字頻排序
 use_preset_vocabulary: true  # 導入八股文字頻

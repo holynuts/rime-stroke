@@ -1,6 +1,6 @@
 import re
 
-with open('stroke.dict.yaml') as file:
+with open('stroke_uiojk.dict.yaml') as file:
     lines = file.readlines()
 
 item2line: dict[tuple[str, str], int] = {}
