@@ -89,9 +89,8 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    __append:
-      # 選字確認鍵：/
-      - { when: has_menu, accept: "slash", send: "space" }
+    # 選字確認鍵：/
+    - { when: has_menu, accept: "slash", send: "space" }
 
 recognizer:
   import_preset: default
