@@ -12,7 +12,7 @@ schema:
     - 宋天
   description: |
     五筆畫
-    h,s,p,n,z 代表橫、豎、撇、捺、折
+    u,i,o,j,k 代表橫、豎、撇、點(捺)、折
   dependencies:
     - luna_pinyin
 
@@ -47,8 +47,10 @@ engine:
     - table_translator
 
 speller:
-  alphabet: "abcdefghijklmnopqrstuvwxyz"
+  alphabet: "uiojk"
   delimiter: " '"
+  algebra:
+    - xlit/hspnz/uiojk/
 
 menu:
   page_size: 9
@@ -56,12 +58,13 @@ menu:
 translator:
   dictionary: stroke
   preedit_format:
-#   - xlit/hspnz/㇐㇑㇒㇏㇠/   # 中日韓筆畫（橫豎撇捺折）
-    - xlit/hspnz/⼀⼁⼃⼂⼄/   # 康熙部首（橫豎撇點折）
+#   - xlit/uiojk/㇐㇑㇒㇏㇠/   # 中日韓筆畫（橫豎撇捺折）
+    - xlit/uiojk/⼀⼁⼃⼂⼄/   # 康熙部首（橫豎撇點折）
   comment_format:
     - xform/~//
-#   - xlit/hspnz/㇐㇑㇒㇏㇠/   # 中日韓筆畫（橫豎撇捺折）
-    - xlit/hspnz/⼀⼁⼃⼂⼄/   # 康熙部首（橫豎撇點折）
+#   - xlit/uiojk/㇐㇑㇒㇏㇠/   # 中日韓筆畫（橫豎撇捺折）
+    - xlit/uiojk/⼀⼁⼃⼂⼄/   # 康熙部首（橫豎撇點折）
+    - xlit/hspnz/⼀⼁⼃⼂⼄/   # 兼容原始碼表註釋
 
 abc_segmentor:
   extra_tags:
@@ -86,27 +89,9 @@ punctuator:
 key_binder:
   import_preset: default
   bindings:
-    # 兼容其他筆畫名稱（捺屬點部、提屬橫部）
-    - { when: always, accept: "d", send: "n" }
-    - { when: always, accept: "t", send: "h" }
-    # 兼容Mac筆畫輸入法按鍵：🅹⼀, 🅺⼁, 🅻⼃, 🆄⼂, 🅸⺂
-    - { when: always, accept: "j", send: "h" }
-    - { when: always, accept: "k", send: "s" }
-    - { when: always, accept: "l", send: "p" }
-    - { when: always, accept: "u", send: "n" }
-    - { when: always, accept: "i", send: "z" }
-    # 兼容Mac筆畫輸入法小鍵盤按鍵：1︎⃣⼀, 2︎⃣⼁, 3︎⃣⼃, 4︎⃣⼂, 5︎⃣⺂
-    - { when: always, accept: "KP_1", send: "h" }
-    - { when: always, accept: "KP_2", send: "s" }
-    - { when: always, accept: "KP_3", send: "p" }
-    - { when: always, accept: "KP_4", send: "n" }
-    - { when: always, accept: "KP_5", send: "z" }
-    # 禁用小鍵盤其他數字按鍵，以防誤觸
-    - { when: has_menu, accept: "KP_6", send: Select }
-    - { when: has_menu, accept: "KP_7", send: Select }
-    - { when: has_menu, accept: "KP_8", send: Select }
-    - { when: has_menu, accept: "KP_9", send: Select }
-    - { when: has_menu, accept: "KP_0", send: Select }
+    __append:
+      # 選字確認鍵：/
+      - { when: has_menu, accept: "slash", send: "space" }
 
 recognizer:
   import_preset: default
